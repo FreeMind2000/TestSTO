@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2012.11.20 18:41:23.687.cpp,D:\Documents and Settings\Администратор\Мои документы\RAD Studio\Projects\Unit1.cpp=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\build2\Unit_frmMain.cpp</Transaction>
+    <Transaction>2012.11.20 18:41:23.687.h,D:\Documents and Settings\Администратор\Мои документы\RAD Studio\Projects\Unit1.h=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\build2\Unit_frmMain.h</Transaction>
+    <Transaction>2012.11.20 18:41:23.687.dfm,D:\Documents and Settings\Администратор\Мои документы\RAD Studio\Projects\Unit1.dfm=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\build2\Unit_frmMain.dfm</Transaction>
+    <Transaction>2012.11.20 18:41:48.921.cbproj,D:\Documents and Settings\Администратор\Мои документы\RAD Studio\Projects\Project1.cbproj=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\build2\Project_TestSTO.cbproj</Transaction>
+    <Transaction>2012.12.21 18:12:52.390.cpp,D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\build2\Unit1.cpp=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\build2\Unit_frmAbout.cpp</Transaction>
+    <Transaction>2012.12.21 18:12:52.390.h,D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\build2\Unit1.h=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\build2\Unit_frmAbout.h</Transaction>
+    <Transaction>2012.12.21 18:12:52.390.dfm,D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\build2\Unit1.dfm=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\build2\Unit_frmAbout.dfm</Transaction>
+    <Transaction>2012.12.21 19:09:27.062.cbproj,D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\build2\Project_TestSTO.cbproj=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\build2\TestSTO.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>
