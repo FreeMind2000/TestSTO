@@ -12,51 +12,48 @@
 #include <vcl.h>
 #pragma hdrstop
 
-#include "Unit_frmAbout.h"
-#include <Strutils.hpp>
 #include "Unit_frmHello.h"
 #include "Unit_frmMain.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
-TfrmAbout *frmAbout;
+TfrmHello *frmHello;
 //---------------------------------------------------------------------------
-__fastcall TfrmAbout::TfrmAbout(TComponent* Owner)
+__fastcall TfrmHello::TfrmHello(TComponent* Owner)
 	: TForm(Owner)
 {
-	unsigned mask = SendMessage(m_RichEdit_1->Handle, EM_GETEVENTMASK, 0, 0);
-	SendMessage(m_RichEdit_1->Handle, EM_SETEVENTMASK, 0, mask | ENM_LINK);
-	SendMessage(m_RichEdit_1->Handle, EM_AUTOURLDETECT, true, 0);
-
-	m_RichEdit_1->Text = m_RichEdit_1->Text + " ";
 }
-
 //---------------------------------------------------------------------------
-void __fastcall TfrmAbout::WndProc(Messages::TMessage &Message)
-{ 
-	if(Message.Msg == WM_NOTIFY)
-	{
-		if(((LPNMHDR)Message.LParam)->code == EN_LINK)
-		{
-			ENLINK* p = (ENLINK *)Message.LParam;
-			if(p->msg == WM_LBUTTONDOWN)
-			{
-				SendMessage(m_RichEdit_1->Handle, EM_EXSETSEL, 0, (LPARAM)&(p->chrg));
-
-				ShellExecute(Handle, "open", m_RichEdit_1->SelText.c_str(),
-					0, 0, SW_SHOWNORMAL);
-			}
-		}
-	}
-
-	TForm::WndProc(Message);
-}
-
-//---------------------------------------------------------------------------
-void __fastcall TfrmAbout::Button_HelpClick(TObject *Sender)
+void __fastcall TfrmHello::FormShow(TObject *Sender)
 {
-	AnsiString path = "\"" + Strutils::ReplaceStr(Application->ExeName, ".exe", ".mht") + "\"";
+	AnsiString start_page = "file:///" + ExtractFileDir(Application->ExeName)
+		+ "\\TestSTO.mht";
 
-	ShellExecute(NULL,"open", path.c_str(), NULL, NULL,SW_SHOWNORMAL);
+	m_WebBrowser_1->Navigate(start_page);
 }
 //---------------------------------------------------------------------------
+void __fastcall TfrmHello::Button_NextClick(TObject *Sender)
+{
+	frmMain->Show();
+	this->Hide();
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmHello::Button_BackClick(TObject *Sender)
+{
+	try
+	{
+		m_WebBrowser_1->GoBack();
+	}
+	catch(...){}
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmHello::Button_ForwardClick(TObject *Sender)
+{
+	try
+	{
+		m_WebBrowser_1->GoForward();
+	}
+	catch(...){}
+}
+//---------------------------------------------------------------------------
+

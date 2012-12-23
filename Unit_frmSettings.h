@@ -8,33 +8,32 @@
 // Автор: Александр Меркелов (free_mind2@list.ru)
 // Форум программы: http://www.free---mind.mirbb.net/t7-topic
 //---------------------------------------------------------------------------
-#ifndef Unit_frmAboutH
-#define Unit_frmAboutH
+
+#ifndef Unit_frmSettingsH
+#define Unit_frmSettingsH
 //---------------------------------------------------------------------------
 #include <Classes.hpp>
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
-#include <Buttons.hpp>
+#include <Grids.hpp>
+#include <ValEdit.hpp>
 #include <ComCtrls.hpp>
-#include <ExtCtrls.hpp>
-#include <jpeg.hpp>
 //---------------------------------------------------------------------------
-class TfrmAbout : public TForm
+class TfrmSettings : public TForm
 {
 __published:	// IDE-managed Components
-	TRichEdit *m_RichEdit_1;
-	TButton *Button_Help;
-	TImage *m_Image_1;
-	void __fastcall Button_HelpClick(TObject *Sender);
+	TValueListEditor *m_VLE_1;
+	TButton *Button_OK;
+	TButton *Button_Cancel;
+	TRichEdit *m_RichEdit_Descript;
+	void __fastcall FormShow(TObject *Sender);
+	void __fastcall Button_OKClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-	__fastcall TfrmAbout(TComponent* Owner);
-
-	// переопределение
-	void __fastcall WndProc(Messages::TMessage &Message);
+	__fastcall TfrmSettings(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TfrmAbout *frmAbout;
+extern PACKAGE TfrmSettings *frmSettings;
 //---------------------------------------------------------------------------
 #endif

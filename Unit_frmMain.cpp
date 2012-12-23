@@ -1,4 +1,8 @@
 //---------------------------------------------------------------------------
+// < TestSTO >
+//---------------------------------------------------------------------------
+// Автор: Александр Меркелов (free_mind2@list.ru)
+//---------------------------------------------------------------------------
 
 #include <vcl.h>
 #pragma hdrstop
@@ -6,6 +10,9 @@
 #include "Unit_frmMain.h"
 #include <math.h>
 #include "Unit_frmAbout.h"
+#include "Unit_frmSettings.h"
+#include "Unit_frmHelpExp1.h"
+#include "Unit_frmHelpExp2.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -20,15 +27,20 @@ void __fastcall TfrmMain::FormCreate(TObject *Sender)
 {
 	m_CurExperiment = NULL;
 
-	// Инициализируем эксперимент из списка
-	m_ComboBox_ExperimentChange(NULL);
-
 	Application->HintHidePause = 10000;
 
 	AnsiString str;
 	str.printf("Релятивистская физика (C=const=%0.2f относительно любых ИСО)", g_light_c);
 	Panel_3->Caption = str;
 }
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::FormShow(TObject *Sender)
+{
+	// Инициализируем эксперимент из списка
+	m_ComboBox_ExperimentChange(NULL);
+}
+
 //---------------------------------------------------------------------------
 
 void __fastcall TfrmMain::FormDestroy(TObject *Sender)
@@ -65,6 +77,15 @@ void __fastcall TfrmMain::m_ComboBox_ExperimentChange(TObject *Sender)
 	// инитим
 	m_CurExperiment->Init();
 	m_CurExperiment->Show();
+	frmMain->m_Memo_Dbg->Lines->Add("----------");
+
+	// окно помощи - если первый раз
+	if (frmMain->Tag == 1)
+	if (m_CurExperiment->m_frmHelp->Tag == 0)
+	{
+		m_CurExperiment->m_frmHelp->Tag = 1;
+		m_CurExperiment->m_frmHelp->ShowModal();
+	}
 }
 
 //---------------------------------------------------------------------------
@@ -105,6 +126,9 @@ void __fastcall MMatPoint::Show
 {
 	// базовый X
 	int base_x = iso->visual_dx + iso->coord_begin_point.x + x;
+
+	// сам объект
+	iso->paint->Canvas->Pixels[base_x][visual_dy] = clWhite;
 
 	// фрейм
 	iso->paint->Canvas->Brush->Color = color;
@@ -197,36 +221,45 @@ void __fastcall MMatPoint::TransformStoFormula
 	MMatPoint& out_obj			// объект в который сохраняется результат преобразования
 )
 {
+
+	// считаем квадраты скоростей
 	double vv = in_move_v * in_move_v;
 	double cc = g_light_c * g_light_c;
 
-	out_obj.v = (v - in_move_v) / (1 - (v * in_move_v)/cc);
-	out_obj.t = t * sqrt(1 - (vv)/(cc));
+	try
+	{
+		// v' = релятивистское сложение скоростей
+		// для перехода между ИСО K ==> K'
+		out_obj.v = (v - in_move_v) / (1 - (v * in_move_v)/cc);
+	}
+	catch(...){}
 
-	double x00 = (x0) / sqrt(1 - (vv)/(cc));
-	out_obj.x = x00 + out_obj.v * out_obj.t;
+	try
+	{
+		// t' = релятивистское время
+		// для перехода между ИСО K ==> K'
+		out_obj.t = t * sqrt(1 - (vv)/(cc));
+	}
+	catch(...){}
+
+	try
+	{
+		// получаем x0' = релятивистское растояние
+		// для перехода между ИСО K ==> K'
+		double x00 = (x0) / sqrt(1 - (vv)/(cc));
+
+		// Считаем x' по ранее расчитанным данным относительно ИСО K'
+		// x' = x0' + (v' * t')
+		out_obj.x = x00 + out_obj.v * out_obj.t;
+	}
+	catch(...){}
 
 
 	AnsiString dbg;
 	dbg.printf("[%s (x=%0.2f, v=%0.2f, t=%0.2f)] ==> [%s (x=%0.2f, v=%0.2f, t=%0.2f)]",
 		name, x, v, t, out_obj.name, out_obj.x, out_obj.v, out_obj.t);
 	frmMain->m_Memo_Dbg->Lines->Add(dbg);
-	
 
-//	// классик
-//	out_obj.x = x - in_move_v * t;
-//	out_obj.v = v - in_move_v;
-//
-//	double t2;
-//	if(out_obj.v != 0)
-//	{
-//		double x00 = x0;// - in_move_v * t; t=0!!!!
-//		out_obj.t = (out_obj.x - x00) / out_obj.v;
-//	}
-//	else
-//	{
-//		out_obj.t = -111;
-//	}
 }
 
 //---------------------------------------------------------------------------
@@ -237,7 +270,10 @@ void __fastcall MSensor2::Run
 )
 {
 	int k_work = 0;
-	double derr = 0.001;	// величена погрешности из-за округлений double 
+	//double sensor_zone = 0.001;	// зона чувствительности датчика
+									// (т.к. при больших delta t - фотоны могут перепрыгивать
+									// через точку в которой находится датчик)
+	double sensor_zone = this->visual_rx; 
 
 	// перебираем все объекты связанные с нашей ИСО
 	// и считаем кол-во объектов нашего типа находящихся
@@ -251,8 +287,8 @@ void __fastcall MSensor2::Run
 		if (cur_obj.name.SubString(1,1) == this->type)
 		{
 			// если в нашей точке
-			if ((cur_obj.x <= (this->x + derr)) && (cur_obj.x >= (this->x - derr)))
-			if ((cur_obj.t <= (this->t + derr)) && (cur_obj.t >= (this->t - derr)))
+			if ((cur_obj.x <= (this->x + sensor_zone)) && (cur_obj.x >= (this->x - sensor_zone)))
+			if ((cur_obj.t <= (this->t + sensor_zone)) && (cur_obj.t >= (this->t - sensor_zone)))
 			{
 				k_work++;
 			}
@@ -261,19 +297,23 @@ void __fastcall MSensor2::Run
 		this->iso->obj_list.MoveNext();
 	}
 
-	// проверяем результат
-	if (k_work >= 2)
-    {
-		this->sost = MSensor2::t_sost_on;
-	}
-	else
-	if (k_work == 1)
-    {
-		this->sost = MSensor2::t_sost_off;
-	}
-	else
+	// если состояние еще не определено
+	if (this->sost == MSensor2::t_sost_undefined)
 	{
-    	// не меняем состояние
+		// проверяем результат
+		if (k_work >= 2)
+		{
+			this->sost = MSensor2::t_sost_on;
+		}
+		else
+		if (k_work == 1)
+		{
+			this->sost = MSensor2::t_sost_off;
+		}
+		else
+		{
+			// не меняем состояние
+		}
 	}
 }
 
@@ -386,6 +426,7 @@ void __fastcall MIso::MoveObjects
 {
 	// собственная скорость ИСО всегда = 0
 	this->coord_begin_point.x = 0;
+	this->coord_begin_point.t = in_new_time;
 
 	// выводим список связанных объектов
 	for (int i=obj_list.CicleCount(); i>0; i--)
@@ -405,6 +446,24 @@ void __fastcall MIso::TransformObjects
 	MIso* inout_iso          	// ИСО в которую сохраняется результат трансформации
 )
 {
+	//-----
+	// Расчитываем положение начала координат inout_iso относительно текущей ИСО (this)
+	if (frmMain->m_CheckBox_Experiment_FixMoveIso->Checked == false)
+	{
+		inout_iso->coord_begin_point.x = inout_iso->coord_begin_point.v * this->coord_begin_point.t;
+	}
+	else
+	{
+		// собственная скорость ИСО всегда = 0
+		inout_iso->coord_begin_point.x = 0;
+	}
+
+
+
+	//-----
+	// Преобразовываем координаты текущей неподвижной системы (this)
+	// в координаты ИСО inout_iso движущейся относительно нее
+
 	// перебираем список связанных объектов с текущей ИСО
 	// и параллельно с движущейся ИСО
 	// (кол-во объектов и порядок добавления должны быть ОДИНАКОВЫ)
@@ -486,10 +545,8 @@ void __fastcall MExperimentBase::Run
 	{
 		// Переинициализация системы с момента t0
 		time_cur = time_start;
-
-		this->Destroy();
-		this->Init();
-		return;
+		this->Reset();
+		frmMain->m_Memo_Dbg->Clear();
 	}
 
 	// двигаем объекты в неподвижной ИСО
@@ -524,8 +581,10 @@ void __fastcall MExperimentEasyMove::Init
 	//-----
 	// инициализируем эксперимент
 	time_start = 0;
-	time_end = 100;
-	time_step = 10;
+	time_end = 50;
+	time_step = 1;
+	time_cur = time_start;
+	this->m_frmHelp = frmHelpExp1;
 
 	//-----
 	// создаем покоящуюся ИСО
@@ -540,6 +599,7 @@ void __fastcall MExperimentEasyMove::Init
 	abs_iso->hor_line_len = abs_iso->paint->Width - 20*2;
 
 	abs_iso->coord_begin_point.x0 = 0;
+	abs_iso->coord_begin_point.x = 0;
 	abs_iso->coord_begin_point.v = 0;
 	abs_iso->coord_begin_point.t = 0;
 
@@ -548,7 +608,7 @@ void __fastcall MExperimentEasyMove::Init
 	MMatPoint* new_mat_point;
 
 	// скорость вагона
-	double v_vagon = 10;
+	double v_vagon = 20;
 	// высота на которой отображается вагон
 	int vagon_visual_dy = abs_iso->visual_dy - 50;
 	int vagon_visual_rx = 10;
@@ -605,13 +665,14 @@ void __fastcall MExperimentEasyMove::Init
 	move_iso->name = "K'";
 	move_iso->color = clRed;
 	move_iso->paint = frmMain->m_PaintBox_MoveSTO;
-	move_iso->visual_dx = 300;
+	move_iso->visual_dx = abs_iso->visual_dx;
 	move_iso->visual_dy = move_iso->paint->Height - 30;;
 	move_iso->ver_line_len = move_iso->paint->Height;
 	move_iso->hor_line_len = 450;
 
 	move_iso->coord_begin_point.x0 = 0;
-	move_iso->coord_begin_point.v = 10;//3; // скорость движущейся ИСО
+	move_iso->coord_begin_point.x = 0;
+	move_iso->coord_begin_point.v = v_vagon; // скорость движущейся ИСО
 	move_iso->coord_begin_point.t = 0;
 
 	//-----
@@ -670,6 +731,41 @@ void __fastcall MExperimentEasyMove::Init
 }
 
 //---------------------------------------------------------------------------
+// Сброс состояния датчиков
+//---------------------------------------------------------------------------
+void __fastcall MExperimentEasyMove::Reset
+(
+)
+{
+	// сброс объектов abs_iso
+	// + устновка скорости движения поезда ИСО K' (ее можно изменить в параметрах)
+	for (int i=abs_iso->obj_list.CicleCount(); i>0; i--)
+	{
+		// объекы A - A1,As,A2 = поезд
+		if (abs_iso->obj_list.GetCurObj().name.SubString(1,1) == "A")
+		{
+			MMatPoint& mp = (MMatPoint&)abs_iso->obj_list.GetCurObj();
+
+			// скорость поезда = скорость движущейся ИСО K'
+			mp.v = this->move_iso->coord_begin_point.v;
+		}
+
+		// в этом эксперименте датчиков нет
+		// ничего не сбрасываем
+
+		// скорость фотонов не меняется = C
+		// их не трогам...
+
+		//
+		abs_iso->obj_list.MoveNext();
+	}
+
+	// сброс объектов move_iso
+	// в этом эксперименте датчиков нет
+	// ничего не сбрасываем
+}
+
+//---------------------------------------------------------------------------
 // Инициализация MExperimentLastArgumentOfKing
 //---------------------------------------------------------------------------
 void __fastcall MExperimentLastArgumentOfKing::Init
@@ -682,7 +778,9 @@ void __fastcall MExperimentLastArgumentOfKing::Init
 	// инициализируем эксперимент
 	time_start = 0;
 	time_end = 34;//100;
-	time_step = 0.5;//10;
+	time_step = 0.2;//10;
+	time_cur = time_start;
+	this->m_frmHelp = frmHelpExp2;	
 
 	//-----
 	// создаем покоящуюся ИСО
@@ -747,7 +845,7 @@ void __fastcall MExperimentLastArgumentOfKing::Init
 	// Вагон
 	//-----
 	// скорость вагона
-	double v_vagon = 10;
+	double v_vagon = 20;
 	// высота на которой отображается вагон
 	int vagon_visual_dy = abs_iso->visual_dy - 50;
 	int vagon_visual_rx = 10;
@@ -829,13 +927,13 @@ void __fastcall MExperimentLastArgumentOfKing::Init
 	move_iso->name = "K'";
 	move_iso->color = clRed;
 	move_iso->paint = frmMain->m_PaintBox_MoveSTO;
-	move_iso->visual_dx = 300;
+	move_iso->visual_dx = abs_iso->visual_dx;
 	move_iso->visual_dy = move_iso->paint->Height - 30;;
 	move_iso->ver_line_len = move_iso->paint->Height;
 	move_iso->hor_line_len = 450;
 
 	move_iso->coord_begin_point.x0 = 0;
-	move_iso->coord_begin_point.v = 10;//3; // скорость движущейся ИСО
+	move_iso->coord_begin_point.v = v_vagon; // скорость движущейся ИСО
 	move_iso->coord_begin_point.t = 0;
 
 	//-----
@@ -945,12 +1043,132 @@ void __fastcall MExperimentLastArgumentOfKing::Init
 	abs_iso->TransformObjects(MIso::t_transform_sto, move_iso);
 }
 
+//---------------------------------------------------------------------------
+// Сброс состояния датчиков
+//---------------------------------------------------------------------------
+void __fastcall MExperimentLastArgumentOfKing::Reset
+(
+)
+{
+	// сброс объектов abs_iso
+	// + устновка скорости движения поезда ИСО K' (ее можно изменить в параметрах)
+	for (int i=abs_iso->obj_list.CicleCount(); i>0; i--)
+	{
+		if (abs_iso->obj_list.GetCurObj().name == "D1")
+		{
+			MSensor2& d1 = (MSensor2&)abs_iso->obj_list.GetCurObj();
+
+			//
+			d1.sost = MSensor2::t_sost_undefined;
+
+			// скорость датчика = скорость поезда = скорость движущейся ИСО K'
+			d1.v = this->move_iso->coord_begin_point.v;
+		}
+
+		// объекы A - A1,As,A2 = поезд
+		if (abs_iso->obj_list.GetCurObj().name.SubString(1,1) == "A")
+		{
+			MMatPoint& mp = (MMatPoint&)abs_iso->obj_list.GetCurObj();
+
+			// скорость поезда = скорость движущейся ИСО K'
+			mp.v = this->move_iso->coord_begin_point.v;
+		}
+
+		// скорость фотонов не меняется = C
+		// их не трогам...
+
+		//
+		abs_iso->obj_list.MoveNext();
+	}
+
+	// сброс объектов move_iso
+	for (int i=move_iso->obj_list.CicleCount(); i>0; i--)
+	{
+		if (move_iso->obj_list.GetCurObj().name == "D1'")
+		{
+			MSensor2& d1 = (MSensor2&)move_iso->obj_list.GetCurObj();
+
+			d1.sost = MSensor2::t_sost_undefined;
+		}
+
+		// скорости и координаты всех объектов
+		// расчитываются по формуле преобразования ИСО K в ИСО K' в Run()
+		// тут не трогаем...
+
+		move_iso->obj_list.MoveNext();
+	}
+
+}
 
 //---------------------------------------------------------------------------
 
 void __fastcall TfrmMain::Button_AboutClick(TObject *Sender)
 {
 	frmAbout->ShowModal();	
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::m_CheckBox_Experiment_FixMoveIsoClick(TObject *Sender)
+{
+	if (m_CurExperiment)
+	{
+		if (m_CheckBox_Experiment_FixMoveIso->Checked == false)
+		{
+			m_CurExperiment->move_iso->coord_begin_point.x =
+				m_CurExperiment->move_iso->coord_begin_point.v * m_CurExperiment->abs_iso->coord_begin_point.t;
+		}
+		else
+		{
+			// собственная скорость ИСО всегда = 0
+			m_CurExperiment->move_iso->coord_begin_point.x = 0;
+		}
+
+		m_CurExperiment->Show();
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::Button_ExpSettingsClick(TObject *Sender)
+{
+	if (m_CurExperiment)
+	{
+		frmSettings->ShowModal();
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::FormHide(TObject *Sender)
+{
+	Application->Terminate();	
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::Button_ExpHelpClick(TObject *Sender)
+{
+	if (m_CurExperiment)
+	{
+		if (m_CurExperiment->m_frmHelp)
+        {
+			m_CurExperiment->m_frmHelp->ShowModal();
+		}
+	}
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::FormActivate(TObject *Sender)
+{
+	if (m_CurExperiment)
+    {
+		// окно помощи - если первый раз
+		if (m_CurExperiment->m_frmHelp->Tag == 0)
+		{
+			frmMain->Tag = 1;
+
+			m_CurExperiment->m_frmHelp->Tag = 1;
+			m_CurExperiment->m_frmHelp->ShowModal();
+		}
+	}
 }
 //---------------------------------------------------------------------------
 

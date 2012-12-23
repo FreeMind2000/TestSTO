@@ -2,8 +2,10 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
-  Caption = 'TestSTO'
-  ClientHeight = 754
+  Caption = 
+    'TestSTO - '#1055#1088#1086#1075#1088#1072#1084#1084#1072' '#1084#1086#1076#1077#1083#1080#1088#1091#1102#1097#1072#1103' '#1074#1089#1077#1083#1077#1085#1085#1091#1102' '#1057#1058#1054' '#1080' '#1087#1072#1088#1072#1076#1086#1082#1089' '#1040'.'#1052#1077#1088#1082 +
+    #1077#1083#1086#1074#1072' : "'#1055#1086#1089#1083#1077#1076#1085#1080#1081' '#1076#1086#1074#1086#1076' '#1050#1086#1088#1086#1083#1103'"'
+  ClientHeight = 726
   ClientWidth = 1016
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -13,8 +15,11 @@ object frmMain: TfrmMain
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnActivate = FormActivate
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnHide = FormHide
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object m_PaintBox_AbsSTO: TPaintBox
@@ -113,16 +118,14 @@ object frmMain: TfrmMain
       TabOrder = 0
       OnClick = Button_StartExperimentClick
     end
-    object m_CheckBox_ExperimentByStep: TCheckBox
+    object m_CheckBox_Experiment_FixMoveIso: TCheckBox
       Left = 642
       Top = 6
-      Width = 123
+      Width = 141
       Height = 17
-      Caption = #1055#1086#1096#1072#1075#1086#1074#1099#1081' '#1088#1077#1078#1080#1084
-      Checked = True
-      Enabled = False
-      State = cbChecked
+      Caption = #1047#1072#1092#1080#1082#1089#1080#1088#1086#1074#1072#1090#1100' '#1048#1057#1054' K'#39
       TabOrder = 2
+      OnClick = m_CheckBox_Experiment_FixMoveIsoClick
     end
     object Button_About: TButton
       Left = 932
@@ -132,6 +135,27 @@ object frmMain: TfrmMain
       Caption = #1054' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
       TabOrder = 3
       OnClick = Button_AboutClick
+    end
+    object Button_ExpSettings: TButton
+      Left = 848
+      Top = 3
+      Width = 75
+      Height = 23
+      Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
+      TabOrder = 4
+      OnClick = Button_ExpSettingsClick
+    end
+    object Button_ExpHelp: TButton
+      Left = 812
+      Top = 3
+      Width = 33
+      Height = 23
+      Hint = #1054#1087#1080#1089#1072#1085#1080#1077' '#1090#1077#1082#1091#1097#1077#1075#1086' '#1101#1082#1089#1087#1077#1088#1080#1084#1077#1085#1090#1072
+      Caption = #1054
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 5
+      OnClick = Button_ExpHelpClick
     end
   end
   object Panel1: TPanel
