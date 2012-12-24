@@ -17,6 +17,7 @@ USEFORM("Unit_frmSettings.cpp", frmSettings);
 USEFORM("Unit_frmHello.cpp", frmHello);
 USEFORM("Unit_frmHelpExp1.cpp", frmHelpExp1);
 USEFORM("Unit_frmHelpExp2.cpp", frmHelpExp2);
+USEFORM("Unit_frmHelpSut.cpp", frmHelpSut);
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -30,6 +31,7 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		Application->CreateForm(__classid(TfrmAbout), &frmAbout);
 		Application->CreateForm(__classid(TfrmSettings), &frmSettings);
 		Application->CreateForm(__classid(TfrmHelpExp2), &frmHelpExp2);
+		Application->CreateForm(__classid(TfrmHelpSut), &frmHelpSut);
 		Application->Run();
 	}
 	catch (Exception &exception)

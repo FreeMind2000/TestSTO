@@ -26,7 +26,9 @@ __published:	// IDE-managed Components
 	TRichEdit *m_RichEdit_1;
 	TButton *Button_Help;
 	TImage *m_Image_1;
+	TButton *Button_Sut;
 	void __fastcall Button_HelpClick(TObject *Sender);
+	void __fastcall Button_SutClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TfrmAbout(TComponent* Owner);

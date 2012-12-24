@@ -27,5 +27,8 @@
     <Transaction>2012.12.23 19:14:00.203.cpp,D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit2.cpp=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpExp2.cpp</Transaction>
     <Transaction>2012.12.23 19:14:00.203.h,D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit2.h=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpExp2.h</Transaction>
     <Transaction>2012.12.23 19:14:00.203.dfm,D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit2.dfm=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpExp2.dfm</Transaction>
+    <Transaction>2012.12.24 21:00:56.546.cpp,D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit3.cpp=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpSut.cpp</Transaction>
+    <Transaction>2012.12.24 21:00:56.546.h,D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit3.h=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpSut.h</Transaction>
+    <Transaction>2012.12.24 21:00:56.546.dfm,D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit3.dfm=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpSut.dfm</Transaction>
   </Transactions>
 </BorlandProject>

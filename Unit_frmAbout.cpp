@@ -16,6 +16,7 @@
 #include <Strutils.hpp>
 #include "Unit_frmHello.h"
 #include "Unit_frmMain.h"
+#include "Unit_frmHelpSut.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -60,3 +61,9 @@ void __fastcall TfrmAbout::Button_HelpClick(TObject *Sender)
 	ShellExecute(NULL,"open", path.c_str(), NULL, NULL,SW_SHOWNORMAL);
 }
 //---------------------------------------------------------------------------
+void __fastcall TfrmAbout::Button_SutClick(TObject *Sender)
+{
+	frmHelpSut->ShowModal();	
+}
+//---------------------------------------------------------------------------
+
