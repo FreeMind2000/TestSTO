@@ -43,9 +43,15 @@ void __fastcall TfrmSettings::Button_OKClick(TObject *Sender)
 
 
 	// Перезапускаем эксперимент с новыми параметрами
-	frmMain->m_CurExperiment->time_cur = frmMain->m_CurExperiment->time_end;
-	frmMain->m_CurExperiment->Run();
-	frmMain->m_CurExperiment->Show();
+//	frmMain->m_CurExperiment->time_cur = frmMain->m_CurExperiment->time_end;
+//	frmMain->m_CurExperiment->Run();
+//	frmMain->m_CurExperiment->Show();
+
+	// флаг, что параметры эксперимента по умолчанию инициализировать не надо
+	frmMain->m_ComboBox_Experiment->Tag = 1;
+
+	// Перезапускаем эксперимент с новыми параметрами
+	frmMain->m_ComboBox_ExperimentChange(NULL);
 
 	this->Close();
 }

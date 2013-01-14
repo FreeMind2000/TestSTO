@@ -18,6 +18,9 @@ USEFORM("Unit_frmHello.cpp", frmHello);
 USEFORM("Unit_frmHelpExp1.cpp", frmHelpExp1);
 USEFORM("Unit_frmHelpExp2.cpp", frmHelpExp2);
 USEFORM("Unit_frmHelpSut.cpp", frmHelpSut);
+USEFORM("Unit_frmHelpExp3.cpp", frmHelpExp3);
+USEFORM("Unit_frmHelpExp4.cpp", frmHelpExp4);
+USEFORM("Unit_frmHelpExp5.cpp", frmHelpExp5);
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -26,12 +29,15 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		Application->Initialize();
 		SetApplicationMainFormOnTaskBar(Application, true);
 		Application->CreateForm(__classid(TfrmHello), &frmHello);
+		Application->CreateForm(__classid(TfrmSettings), &frmSettings);
 		Application->CreateForm(__classid(TfrmHelpExp1), &frmHelpExp1);
+		Application->CreateForm(__classid(TfrmHelpExp2), &frmHelpExp2);
 		Application->CreateForm(__classid(TfrmMain), &frmMain);
 		Application->CreateForm(__classid(TfrmAbout), &frmAbout);
-		Application->CreateForm(__classid(TfrmSettings), &frmSettings);
-		Application->CreateForm(__classid(TfrmHelpExp2), &frmHelpExp2);
 		Application->CreateForm(__classid(TfrmHelpSut), &frmHelpSut);
+		Application->CreateForm(__classid(TfrmHelpExp3), &frmHelpExp3);
+		Application->CreateForm(__classid(TfrmHelpExp4), &frmHelpExp4);
+		Application->CreateForm(__classid(TfrmHelpExp5), &frmHelpExp5);
 		Application->Run();
 	}
 	catch (Exception &exception)

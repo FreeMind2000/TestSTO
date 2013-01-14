@@ -1,25 +1,26 @@
 [Closed Files]
-File_0=TSourceModule,'D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpExp1.cpp',0,1,1,26,10,0,0,,
-File_1=TSourceModule,'d:\program files\codegear\rad studio\5.0\include\richedit.h',0,1,1108,1,1128,0,0,,
-File_2=TSourceModule,'D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmSettings.dfm',0,1,1,1,1,0,0,,
-File_3=TSourceModule,'d:\program files\codegear\rad studio\5.0\include\vcl\ValEdit.hpp',0,1,1,1,253,0,0,,
-File_4=TSourceModule,'d:\program files\codegear\rad studio\5.0\include\vcl\Graphics.hpp',0,1,16,1,24,0,0,,
-File_5=TSourceModule,'Unit_frmMain.cpp',0,1,139,24,165,0,0,,
-File_6=TSourceModule,'D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\build\Unit1.cpp',0,1,155,16,160,0,0,,
-File_7=TSourceModule,'D:\Прграммные проекты\AI\C++Builder\MindSound_ALL\ver_work\MAlgTextBase.cpp',0,1,392,53,410,0,0,,
-File_8=TSourceModule,'D:\Прграммные проекты\AI\C++Builder\MindSound_ALL\ver_work\MMindTextBase.cpp',0,1,22,98,25,0,0,,
-File_9=TSourceModule,'D:\Прграммные проекты\AI\C++Builder\MindSound_ALL\ver_work\Unit_frmAlgoTest.cpp',0,1,743,28,763,0,0,,
+File_0=TSourceModule,'D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\MList.h',0,1,233,1,246,0,0,,
+File_1=TSourceModule,'d:\program files\codegear\rad studio\5.0\SOURCE\WIN32\RTL\SYS\sysutils.pas',0,1,3233,1,3246,0,0,,
+File_2=TSourceModule,'d:\program files\codegear\rad studio\5.0\SOURCE\WIN32\RTL\SYS\system.pas',0,1,9937,1,9954,0,0,,
+File_3=TSourceModule,'d:\program files\codegear\rad studio\5.0\include\vcl\dstring.h',0,1,55,1,68,0,0,,
+File_4=TSourceModule,'d:\program files\codegear\rad studio\5.0\include\richedit.h',0,1,1108,1,1128,0,0,,
+File_5=TSourceModule,'D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmSettings.dfm',0,1,1,1,1,0,0,,
+File_6=TSourceModule,'d:\program files\codegear\rad studio\5.0\include\vcl\ValEdit.hpp',0,1,1,1,253,0,0,,
+File_7=TSourceModule,'d:\program files\codegear\rad studio\5.0\include\vcl\Graphics.hpp',0,1,16,1,24,0,0,,
+File_8=TSourceModule,'Unit_frmMain.cpp',0,1,139,24,165,0,0,,
+File_9=TSourceModule,'D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\build\Unit1.cpp',0,1,155,16,160,0,0,,
 
 [Modules]
 Module0=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmMain.cpp
-Module1=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpExp2.cpp
-Module2=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpExp1.cpp
-Module3=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHello.cpp
-Module4=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmSettings.cpp
-Module5=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\TestSTO.cbproj
-Module6=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmAbout.cpp
-Module7=default.htm
-Count=8
+Module1=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\TestSTO.cbproj
+Module2=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmSettings.cpp
+Module3=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpSut.cpp
+Module4=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpExp1.cpp
+Module5=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmAbout.cpp
+Module6=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpExp2.cpp
+Module7=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHello.cpp
+Module8=default.htm
+Count=9
 EditWindowCount=1
 
 [D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmMain.cpp]
@@ -27,12 +28,30 @@ ModuleType=TSourceModule
 FormState=1
 FormOnTop=0
 
-[D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpExp2.cpp]
+[D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\TestSTO.cbproj]
+ModuleType=TBaseProject
+
+[D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmSettings.cpp]
 ModuleType=TSourceModule
 FormState=1
-FormOnTop=1
+FormOnTop=0
+
+[D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpSut.cpp]
+ModuleType=TSourceModule
+FormState=1
+FormOnTop=0
 
 [D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpExp1.cpp]
+ModuleType=TSourceModule
+FormState=1
+FormOnTop=0
+
+[D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmAbout.cpp]
+ModuleType=TSourceModule
+FormState=1
+FormOnTop=0
+
+[D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpExp2.cpp]
 ModuleType=TSourceModule
 FormState=1
 FormOnTop=0
@@ -42,24 +61,11 @@ ModuleType=TSourceModule
 FormState=1
 FormOnTop=0
 
-[D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmSettings.cpp]
-ModuleType=TSourceModule
-FormState=1
-FormOnTop=0
-
-[D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\TestSTO.cbproj]
-ModuleType=TBaseProject
-
-[D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmAbout.cpp]
-ModuleType=TSourceModule
-FormState=1
-FormOnTop=0
-
 [default.htm]
 ModuleType=TURLModule
 
 [EditWindow0]
-ViewCount=8
+ViewCount=9
 CurrentEditView=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmMain.cpp
 View0=0
 View1=1
@@ -69,6 +75,7 @@ View4=4
 View5=5
 View6=6
 View7=7
+View8=8
 PercentageSizes=1
 Create=1
 Visible=1
@@ -105,13 +112,13 @@ WelcomePageURL=bds:/default.htm
 [View1]
 CustomEditViewType=TEditView
 Module=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmMain.cpp
-CursorX=35
-CursorY=296
-TopLine=278
+CursorX=45
+CursorY=2707
+TopLine=2694
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmMain.h
+EditViewName=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmMain.cpp
 
 [View2]
 CustomEditViewType=TEditView
@@ -138,15 +145,26 @@ EditViewName=Borland.FormDesignerView
 [View4]
 CustomEditViewType=TEditView
 Module=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmAbout.cpp
-CursorX=78
-CursorY=10
+CursorX=29
+CursorY=66
+TopLine=39
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=Borland.FormDesignerView
+
+[View5]
+CustomEditViewType=TEditView
+Module=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHelpSut.cpp
+CursorX=1
+CursorY=1
 TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmAbout.h
+EditViewName=Borland.FormDesignerView
 
-[View5]
+[View6]
 CustomEditViewType=TEditView
 Module=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHello.cpp
 CursorX=78
@@ -157,7 +175,7 @@ Elisions=
 Bookmarks=
 EditViewName=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmHello.h
 
-[View6]
+[View7]
 CustomEditViewType=TEditView
 Module=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\TestSTO.cpp
 CursorX=78
@@ -168,19 +186,22 @@ Elisions=
 Bookmarks=
 EditViewName=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\TestSTO.cpp
 
-[View7]
+[View8]
 CustomEditViewType=TEditView
 Module=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmSettings.cpp
-CursorX=78
-CursorY=10
-TopLine=1
+CursorX=1
+CursorY=32
+TopLine=18
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmSettings.h
+EditViewName=D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmSettings.cpp
 
 [Watches]
-Count=0
+Count=3
+Watch0='frmMain',8,0,18,1,1,'Watches'
+Watch1='frmMain->m_CurExperiment',8,0,18,1,1,'Watches'
+Watch2='x',256,0,18,1,0,'Watches'
 
 [WatchWindow]
 WatchColumnWidth=120
@@ -204,7 +225,8 @@ Dockable=1
 StayOnTop=0
 
 [Breakpoints]
-Count=0
+Count=1
+Breakpoint0='D:\Documents and Settings\Администратор\Рабочий стол\мое\СТО\TestSTO\Unit_frmMain.cpp',2871,'',0,1,'',1,0,0,'',1,'','','',0
 
 [AddressBreakpoints]
 Count=0
@@ -237,12 +259,12 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=2570
-Height=4919
+Width=2508
+Height=4647
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=2570
-ClientHeight=4919
+ClientWidth=2508
+ClientHeight=4647
 TBDockHeight=5897
 LRDockWidth=2352
 Dockable=1
@@ -260,8 +282,8 @@ Width=1977
 Height=7157
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1914
-ClientHeight=6885
+ClientWidth=1977
+ClientHeight=7157
 TBDockHeight=7157
 LRDockWidth=1977
 Dockable=1
@@ -480,22 +502,17 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=2570
-Height=4667
+Width=2508
+Height=4395
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=2570
-ClientHeight=4667
+ClientWidth=2508
+ClientHeight=4395
 TBDockHeight=403
 LRDockWidth=2570
 Dockable=1
 StayOnTop=0
 SplitPos=132
-
-[PropInspDesignerSelection]
-ArrangeBy=Name
-SelectedItem=Action,OnClick
-ExpandedItems=Font=1,GlassFrame=0,HorzScrollBar=0,Margins=0,Padding=0,VertScrollBar=0,Anchors=1,BorderIcons=1,Constraints=0,BevelEdges=0,Font.Style=0,DisplayOptions=0,KeyOptions=0,Options=0
 
 [ModelViewTool]
 PercentageSizes=1
@@ -625,12 +642,12 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=2570
-Height=4667
+Width=2508
+Height=4395
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=2570
-ClientHeight=4667
+ClientWidth=2508
+ClientHeight=4395
 TBDockHeight=3669
 LRDockWidth=1898
 Dockable=1
@@ -699,7 +716,7 @@ Dockable=1
 StayOnTop=0
 TabPosition=1
 ActiveTabID=RefactoringForm
-TabDockClients=RefactoringForm,FindReferencsForm,ToDo List,QAView,MetricsView,RefactoringsView,UsagesView
+TabDockClients=RefactoringForm,FindReferencsForm,ToDo List,RefactoringsView,UsagesView,QAView,MetricsView
 
 [DockSite1]
 HostDockSite=DockBottomPanel
@@ -733,14 +750,14 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=5052
-Top=404
+Left=3771
+Top=231
 Width=2570
 Height=4919
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=2570
-ClientHeight=4919
+ClientWidth=2508
+ClientHeight=4647
 TBDockHeight=4919
 LRDockWidth=2570
 Dockable=1
